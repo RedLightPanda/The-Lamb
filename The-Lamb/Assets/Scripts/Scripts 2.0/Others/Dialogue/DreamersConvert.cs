@@ -9,7 +9,12 @@ namespace Tree.Dialogue
     {
         [SerializeField] Dialogue script = null;
         [SerializeField] bool isPlayer = false;
+        PlayersConversant playerConversant;
 
+        void Awake()
+        {
+            playerConversant = GameObject.FindWithTag("Player").GetComponent<PlayersConversant>();
+        }
 
          void Update()
         {
@@ -47,7 +52,7 @@ namespace Tree.Dialogue
             if (Input.GetButtonDown("Interactive") && isPlayer)
             {
                 Debug.Log("We got it Tim.");
-                GetComponent<PlayersConversant>().StartDialoge(script);
+                playerConversant.StartDialoge(script);
             }
             return;
         }
